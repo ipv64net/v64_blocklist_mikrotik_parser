@@ -20,11 +20,11 @@ def api_abfrage(api_url, benutzername, passwort):
         return None
 
 if __name__ == "__main__":
-    v64_api_token="12345"
-    v64_blocker_node_id="1234"
-    mikrotik_router_ip = "1234"
-    mikrotik_api_user = "api"
-    mikrotik_api_pw = "api"
+    v64_api_token="12345" #Get it From IPv64.net Website
+    v64_blocker_node_id="12345" #Blocker Node ID
+    mikrotik_router_ip = "192.168.1.1" #your Router IP
+    mikrotik_api_user = "api" #API User from Mikrotik
+    mikrotik_api_pw = "api-pw" #API PW from Mikrotik
     api_url = f"https://{mikrotik_router_ip}/rest/ip/firewall/address-list?list=Block-SSH-Tarpit"  # Hier die URL deiner API eintragen
     daten = api_abfrage(api_url, mikrotik_api_user, mikrotik_api_pw)
 
