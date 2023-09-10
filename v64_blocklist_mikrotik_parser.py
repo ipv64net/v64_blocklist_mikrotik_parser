@@ -3,17 +3,19 @@ from requests.auth import HTTPBasicAuth
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 # Get it From IPv64.net Website
-v64_api_token="12345"
+v64_api_token="kcnY9WJRVvmz7qZwhrb3BPF5sSOy2Ddj"
 # Blocker Node ID
-v64_blocker_node_id="12345"
+v64_blocker_node_id="Xrzhjy78I4QwTZKEcWRAMmpVedN3nvqt"
 # your Router IP
-mikrotik_router_ip = "192.168.1.1"
+mikrotik_router_ip = "192.168.10.1"
 # API User from Mikrotik
-mikrotik_api_user = "api"
+mikrotik_api_user = "temp"
 # API PW from Mikrotik
-mikrotik_api_pw = "api-pw"
+mikrotik_api_pw = "1234"
+# Mikrotik Address List Name
+mikrotik_address_list_name = "v64_Blocklist_report"
 # Hier die URL deiner API eintragen
-api_url = f"https://{mikrotik_router_ip}/rest/ip/firewall/address-list?list=v64_Blocklist_report"
+api_url = f"https://{mikrotik_router_ip}/rest/ip/firewall/address-list?list={mikrotik_address_list_name}"
 # ipv64.net Api Endpoint
 v64_url = "https://ipv64.net/api.php"
 
@@ -38,15 +40,12 @@ if __name__ == "__main__":
     daten = api_abfrage()
 
     ip_list = []
-    if daten:
-        # Hier kannst du die Daten weiterverarbeiten, z.B. ausgeben
-        print(json.dumps(daten, indent=4))  # Ausgabe der Daten als schön formatiertes JSON
-        for eintrag in daten:
-            if "address" in eintrag:
-                ip_addr={"ip":eintrag["address"]}
-                ip_list.append(ip_addr)
-            else:
-                print("Kein Address-Feld gefunden.")
+    for eintrag in daten:
+        if "address" in eintrag:
+            ip_addr={"ip":eintrag["address"]}
+            ip_list.append(ip_addr)
+        else:
+            print("Kein Address-Feld gefunden.")
     else:
         print("Fehler bei der API-Anfrage.")
     ip_list= {"ip_list": ip_list}
