@@ -20,7 +20,7 @@ def api_abfrage(api_url, benutzername, passwort):
         return None
 
 if __name__ == "__main__":
-    v64_api_token="1234"
+    v64_api_token="12345"
     v64_blocker_node_id="1234"
     mikrotik_router_ip = "1234"
     mikrotik_api_user = "api"
