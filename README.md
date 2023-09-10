@@ -15,3 +15,14 @@ run /usr/bin/python3 v64_blocklist_mikrotik_parser.py and see if everything is w
 
 # 4. Crontab
 */15 * * * * cd /root/v64_blocklist_mikrotik_parser && /usr/bin/python3 v64_blocklist_mikrotik_parser.py
+
+## Mikrotik Example Rules to Detect something.....
+
+add action=jump chain=input dst-port=22 in-interface-list=WANs jump-target=Tarpit protocol=tcp
+add action=jump chain=input dst-port=21 in-interface-list=WANs jump-target=Tarpit protocol=tcp
+add action=jump chain=input dst-port=3389 in-interface-list=WANs jump-target=Tarpit protocol=tcp
+add action=jump chain=input dst-port=3306 in-interface-list=WANs jump-target=Tarpit protocol=tcp
+add action=jump chain=input dst-port=25 in-interface-list=WANs jump-target=Tarpit protocol=tcp
+add action=jump chain=input in-interface-list=WANs jump-target=Tarpit protocol=tcp psd=21,5s,10,5
+add action=add-src-to-address-list address-list=v64_Blocklist_report address-list-timeout=2h chain=Tarpit
+add action=tarpit chain=Tarpit in-interface-list=WANs protocol=tcp
