@@ -25,7 +25,7 @@ if __name__ == "__main__":
     mikrotik_router_ip = "192.168.1.1" #your Router IP
     mikrotik_api_user = "api" #API User from Mikrotik
     mikrotik_api_pw = "api-pw" #API PW from Mikrotik
-    api_url = f"https://{mikrotik_router_ip}/rest/ip/firewall/address-list?list=Block-SSH-Tarpit"  # Hier die URL deiner API eintragen
+    api_url = f"https://{mikrotik_router_ip}/rest/ip/firewall/address-list?list=v64_Blocklist_report"  # Hier die URL deiner API eintragen
     daten = api_abfrage(api_url, mikrotik_api_user, mikrotik_api_pw)
 
     ip_list = []
