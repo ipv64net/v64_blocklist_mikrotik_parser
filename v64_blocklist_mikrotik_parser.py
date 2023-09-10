@@ -34,7 +34,6 @@ if __name__ == "__main__":
         print(json.dumps(daten, indent=4))  # Ausgabe der Daten als schön formatiertes JSON
         for eintrag in daten:
             if "address" in eintrag:
-                print("Address:", eintrag["address"])
                 ip_addr={"ip":eintrag["address"]}
                 ip_list.append(ip_addr)
             else:
